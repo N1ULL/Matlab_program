@@ -1,0 +1,19 @@
+dt=0.01;
+n=42;
+d=180;
+u=90;
+v=460;
+T=d*v/(v*v-u*u);
+x1=zeros(n,1);y1=zeros(n,1);
+x2=zeros(n,1);y2=zeros(n,1);
+x1(1)=0;y1(1)=0;
+x2(1)=d;y2(1)=0;
+for j=1:n-1
+    x1(j)=0;
+    y1(j)=(j+1)*dt*u;
+    ct=(x1(j)-x2(j))/sqrt((x1(j)-x2(j))^2+(y1(j)-y2(j))^2);
+    st=(y1(j)-y2(j))/sqrt((x1(j)-x2(j))^2+(y1(j)-y2(j))^2);
+    x2(j+1)=x2(j)+v*dt*ct;
+    y2(j+1)=y2(j)+v*dt*st;
+end
+plot(x1,y1,'-k',x2,y2,'-r');
